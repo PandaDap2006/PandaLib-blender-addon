@@ -12,6 +12,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from . import exporter_mesh
+from . import exporter_animation
 
 bl_info = {
     "name": "Minecraft Pandalib Blender Addon",
@@ -27,7 +28,9 @@ bl_info = {
 
 def register():
     exporter_mesh.register()
+    exporter_animation.register()
 
 
 def unregister():
     exporter_mesh.unregister()
+    exporter_animation.unregister()
