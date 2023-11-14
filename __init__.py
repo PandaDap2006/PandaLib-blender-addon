@@ -11,8 +11,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from . import exporter_mesh
-from . import exporter_animation
+from . import ExporterMesh
+from . import ExporterAnimation
+
 
 bl_info = {
     "name": "Minecraft Pandalib Blender Addon",
@@ -27,10 +28,10 @@ bl_info = {
 
 
 def register():
-    exporter_mesh.register()
-    exporter_animation.register()
+    ExporterMesh.register()
+    ExporterAnimation.register()
 
 
 def unregister():
-    exporter_mesh.unregister()
-    exporter_animation.unregister()
+    ExporterMesh.unregister()
+    ExporterAnimation.unregister()

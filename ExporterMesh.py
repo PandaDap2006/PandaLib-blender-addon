@@ -2,6 +2,9 @@ import bpy
 import json
 
 
+mesh_version = "0.2"
+
+
 def exportRig(context, filepath, self, scale):
     f = open(filepath, 'w', encoding='utf-8')
     f.write(json.dumps(createJson(self, scale), indent=2))
@@ -59,7 +62,7 @@ def unregister():
 
 def createJson(self, scale):
     jsonRig = {
-        "format_version": "0.2",
+        "format_version": mesh_version,
         "scale": scale,
         "objects": createMesh(self),
         "bone": createBone()
