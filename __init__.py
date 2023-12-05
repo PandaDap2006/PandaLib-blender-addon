@@ -1,5 +1,4 @@
-import bpy
-from exporter import MeshExporter, AnimationExporter, ArmatureExporter
+from .exporter import MeshExporter, AnimationExporter, ArmatureExporter
 
 bl_info = {
     "name": "Minecraft Pandalib Blender Addon",

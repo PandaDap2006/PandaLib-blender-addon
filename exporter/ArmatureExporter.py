@@ -4,6 +4,7 @@ from bpy_extras.io_utils import ExportHelper
 from bpy.props import StringProperty
 from bpy.types import Operator
 
+
 armature_version = "0.1"
 
 
