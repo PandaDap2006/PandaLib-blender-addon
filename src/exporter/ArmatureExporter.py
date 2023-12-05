@@ -53,7 +53,7 @@ def unregister():
 def createJson(self):
     return {
         "format_version": armature_version,
-        "bone": createBones()
+        "bones": createBones()
     }
 
 
