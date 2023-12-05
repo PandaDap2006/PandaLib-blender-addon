@@ -1,5 +1,8 @@
 import bpy
 import json
+from bpy_extras.io_utils import ExportHelper
+from bpy.props import StringProperty, FloatProperty
+from bpy.types import Operator
 
 
 mesh_version = "0.3"
@@ -11,13 +14,6 @@ def export(context, filepath, self):
     f.close()
 
     return {'FINISHED'}
-
-
-# ExportHelper is a helper class, defines filename and
-# invoke() function which calls the file selector.
-from bpy_extras.io_utils import ExportHelper
-from bpy.props import StringProperty, FloatProperty
-from bpy.types import Operator
 
 
 class ExportSomeData(Operator, ExportHelper):
