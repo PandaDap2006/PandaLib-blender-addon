@@ -47,7 +47,7 @@ class ExportSomeData(Operator, ExportHelper):
 
 # Only needed if you want to add into a dynamic menu
 def menu_func_export(self, context):
-    self.layout.operator(ExportSomeData.bl_idname, text="PandaLib animation (.json)")
+    self.layout.operator(ExportSomeData.bl_idname, text="PandaLib Animation (.json)")
 
 
 # Register and add to the "file selector" menu (required to use F3 search "Text Export Operator" for quick access).

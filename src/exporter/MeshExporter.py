@@ -1,7 +1,7 @@
 import bpy
 import json
 from bpy_extras.io_utils import ExportHelper
-from bpy.props import StringProperty, FloatProperty
+from bpy.props import StringProperty
 from bpy.types import Operator
 
 
@@ -60,17 +60,15 @@ def createJson(self):
 def createMesh(self):
     meshJson = {}
     notQuadCount = 0
-    vertexID = 0
     for object in bpy.data.objects:
         if object.type == "MESH":
             vertexGroups = {g.index: g.name for g in object.vertex_groups}
-            mesh = object.data
+            mesh = object.to_mesh()
 
             uvs = {}
-            for uvIndex in object.loop_indices:
-                vertex_index = mesh.loops[uvIndex].vertex_index
-                uv = mesh.uv_layers.active.data[uvIndex].uv
-                uvs[vertex_index] = [uv.x, uv.y]
+            for loop in mesh.loops:
+                uv = mesh.uv_layers.active.data[loop.index].uv
+                uvs[loop.vertex_index] = [uv.x, uv.y]
 
             vertexList = []
             for vertex in mesh.vertices:
@@ -95,9 +93,13 @@ def createMesh(self):
             faceList = []
             for face in mesh.polygons:
                 if len(face.vertices) == 4:
+                    vertexIndexList = []
+                    for vertexIndex in face.vertices:
+                        vertexIndexList.append(vertexIndex)
+
                     faceList.append({
                         "normal": [face.normal.x, face.normal.z, -face.normal.y],
-                        "vertices": face.vertices,
+                        "vertices": vertexIndexList,
                         "texture_name": object.material_slots[face.material_index].name
                     })
                 else:
