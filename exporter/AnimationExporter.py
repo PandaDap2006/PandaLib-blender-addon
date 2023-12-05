@@ -5,12 +5,12 @@ from mathutils import Euler, Quaternion, Matrix, Vector
 from math import degrees, atan
 
 import bpy
-from . import BakeAnimation
+import BakeAnimation
 
 animation_version = "0.2"
 
 
-def exportAnimation(context, filepath, self, bake):
+def export(context, filepath, self, bake):
     if bake:
         BakeAnimation.bake()
 
@@ -49,7 +49,7 @@ class ExportSomeData(Operator, ExportHelper):
     )
 
     def execute(self, context):
-        return exportAnimation(context, self.filepath, self, self.bake)
+        return export(context, self.filepath, self, self.bake)
 
 
 # Only needed if you want to add into a dynamic menu
