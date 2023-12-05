@@ -1,10 +1,11 @@
 import json
 from array import array
-
-from mathutils import Euler, Quaternion, Matrix, Vector
-from math import degrees, atan
-
 import bpy
+from bpy.props import StringProperty, BoolProperty
+from bpy.types import Operator
+from bpy_extras.io_utils import ExportHelper
+from mathutils import Quaternion
+
 import BakeAnimation
 
 animation_version = "0.2"
@@ -21,17 +22,10 @@ def export(context, filepath, self, bake):
     return {'FINISHED'}
 
 
-# ExportHelper is a helper class, defines filename and
-# invoke() function which calls the file selector.
-from bpy_extras.io_utils import ExportHelper
-from bpy.props import StringProperty, BoolProperty
-from bpy.types import Operator
-
-
 class ExportSomeData(Operator, ExportHelper):
     """This exports the Animation for use with PandaLib"""
     bl_idname = "pandamods.export_animation"
-    bl_label = "Export Rig"
+    bl_label = "Export Animation"
 
     # ExportHelper mixin class uses this
     filename_ext = ".json"
