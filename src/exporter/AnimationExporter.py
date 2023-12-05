@@ -5,8 +5,7 @@ from bpy.props import StringProperty, BoolProperty
 from bpy.types import Operator
 from bpy_extras.io_utils import ExportHelper
 from mathutils import Quaternion
-import BakeAnimation
-
+from .. import BakeAnimation
 
 animation_version = "0.2"
 
