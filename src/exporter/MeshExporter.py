@@ -65,11 +65,6 @@ def createMesh(self):
             vertexGroups = {g.index: g.name for g in object.vertex_groups}
             mesh = object.to_mesh()
 
-            uvs = {}
-            for loop in mesh.loops:
-                uv = mesh.uv_layers.active.data[loop.index].uv
-                uvs[loop.vertex_index] = [uv.x, uv.y]
-
             vertexList = []
             for vertex in mesh.vertices:
                 maxWeight = 0
@@ -85,7 +80,6 @@ def createMesh(self):
                 vertexList.append({
                     "index": vertex.index,
                     "position": [vertex.co.x, vertex.co.z, -vertex.co.y],
-                    "uv": uvs[vertex.index],
                     "weights": groupsList,
                     "max_weight": maxWeight
                 })
@@ -93,6 +87,12 @@ def createMesh(self):
             faceList = []
             for face in mesh.polygons:
                 if len(face.vertices) == 4:
+                    uvs = {}
+                    for uvIndex in face.loop_indices:
+                        vertex_index = mesh.loops[uvIndex].vertex_index
+                        uv = mesh.uv_layers.active.data[uvIndex].uv
+                        uvs[vertex_index] = [uv.x, uv.y]
+
                     vertexIndexList = []
                     for vertexIndex in face.vertices:
                         vertexIndexList.append(vertexIndex)
@@ -100,6 +100,7 @@ def createMesh(self):
                     faceList.append({
                         "normal": [face.normal.x, face.normal.z, -face.normal.y],
                         "vertices": vertexIndexList,
+                        "vertex_uvs": uvs,
                         "texture_name": object.material_slots[face.material_index].name
                     })
                 else:
