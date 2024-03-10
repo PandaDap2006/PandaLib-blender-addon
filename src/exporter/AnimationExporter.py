@@ -110,7 +110,7 @@ def createBone(self):
 			if isInFrameRange(rotationKey) is False: continue
 			scene.frame_set(rotationKey)
 			quaternion = Quaternion(matrix.to_quaternion())
-			rotations[convertToSecond(rotationKey)] = [quaternion.w, quaternion.x, quaternion.y, quaternion.z]
+			rotations[convertToSecond(rotationKey)] = [quaternion.x, quaternion.y, quaternion.z, quaternion.w]
 
 		for scaleKey in scaleKeys:
 			if isInFrameRange(scaleKey) is False: continue
